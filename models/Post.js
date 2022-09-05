@@ -19,7 +19,7 @@ Post.init(
             type: DataTypes.TEXT,
             allowNull: false
         },
-        user: {
+        user_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {

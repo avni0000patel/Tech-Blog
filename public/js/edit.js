@@ -8,20 +8,18 @@ const editFormHandler = async (event) => {
         window.location.toString().split('/').length - 1
     ];
 
-    if (title, comment, id) {
-        const response = await fetch(`/api/posts/${id}`, {
-            method: 'PUT',
-            body: JSON.stringify({ title, comment, post: id }),
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        });
+    const response = await fetch(`/api/posts/${id}`, {
+        method: 'PUT',
+        body: JSON.stringify({ title, content, post_id: id }),
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    });
 
-        if (response.ok) {
-            document.location.replace('/dashboard');
-        } else {
-            alert(response.statusText);
-        }
+    if (response.ok) {
+        document.location.replace('/dashboard');
+    } else {
+        alert(response.statusText);
     }
 };
 

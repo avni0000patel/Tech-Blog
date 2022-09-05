@@ -2,30 +2,20 @@ const { Post } = require('../models');
 
 const postData = [
     {
-        title: ,
-        content: ,
-        user:
+        title: 'Why MVC is so important',
+        content: 'MVC allows developers to maintain a true separation of concerns, devising their code between the Model layer for data, the View layer for design, and the Controller layer for application logic.',
+        user: 1
     },
     {
-        title: ,
-        content: ,
-        user:
+        title: 'Authentication vs. Authorization',
+        content: 'There is a difference between authentication and authorization. Authentication means confirming your own identify, whereas authorization measn being allowed access to the system.',
+        user: 2
     },
     {
-        title: ,
-        content: ,
-        user:
-    },
-    {
-        title: ,
-        content: ,
-        user:
-    },
-    {
-        title: ,
-        content: ,
-        user:
-    },
+        title: 'Object-Relational Mapping',
+        content: 'I have really loved learning about ORMs. Its really simplified the way I create queries in SQL!',
+        user: 3
+    }
 ];
 
 const seedPosts = () => Post.bulkCreate(postData);
