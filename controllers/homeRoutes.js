@@ -7,6 +7,10 @@ router.get('/', async (req, res) => {
         const postData = await Post.findAll({
             include: [
                 {
+                    model: Comment,
+                    attributes: ['id', 'comment', 'post_id', 'user_id', 'created_at']
+                },
+                {
                     model: User,
                     attributes: ['username'],
                 },
@@ -36,7 +40,6 @@ router.get('/login', (req, res) => {
     res.render('login');
 });
 
-// redirecting users to sign in page once they sign up
 router.get('/signup', (req, res) => {
     res.render('signup');
 });
@@ -45,6 +48,10 @@ router.get('/post/:id', async (req, res) => {
     try {
         const postData = await Post.findByPk(req.params.id, {
             include: [
+                {
+                    model: Comment,
+                    attributes: ['id', 'comment', 'post_id', 'user_id', 'created_at']
+                },
                 {
                     model: User,
                     attributes: ['username'],
@@ -67,6 +74,10 @@ router.get('/posts-comments', async (req, res) => {
     try {
         const postData = await Post.findByPk(req.params.id, {
             include: [
+                {
+                    model: Comment,
+                    attributes: ['id', 'comment', 'post_id', 'user_id', 'created_at']
+                },
                 {
                     model: User,
                     attributes: ['username'],
