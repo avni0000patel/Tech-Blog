@@ -4,7 +4,7 @@ const { User, Post, Comment } = require('../../models');
 // Get all posts
 router.get('/', (req, res) => {
     try {
-        const postData = await Post.findAll({
+        const postData = Post.findAll({
             include: [{ model: User }, { model: Comment }]
         });
 
