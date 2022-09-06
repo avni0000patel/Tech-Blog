@@ -17,7 +17,11 @@ router.get('/', withAuth, (req, res) => {
                 },
                 {
                     model: Comment,
-                    attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at']
+                    attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+                    include: {
+                        model: User,
+                        attributes: ["username"],
+                    },
                 },
             ]
         });
@@ -50,6 +54,10 @@ router.get('/edit/:id', withAuth, (req, res) => {
                 {
                     model: Comment,
                     attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+                    include: {
+                        model: User,
+                        attributes: ["username"],
+                    },
                 }
             ]
         })
@@ -58,7 +66,7 @@ router.get('/edit/:id', withAuth, (req, res) => {
         const posts = postData.map((post) => post.get({ plain: true }));
 
         // Pass serialized data and session flag into template
-        res.render('edit-post', {
+        res.render('edit', {
             posts,
             logged_in: req.session.logged_in
         });
@@ -68,7 +76,7 @@ router.get('/edit/:id', withAuth, (req, res) => {
 })
 
 router.get('/new', (req, res) => {
-    res.render('new-post');
+    res.render('post');
 });
 
 module.exports = router;

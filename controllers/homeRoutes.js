@@ -8,7 +8,11 @@ router.get('/', async (req, res) => {
             include: [
                 {
                     model: Comment,
-                    attributes: ['id', 'comment', 'post_id', 'user_id', 'created_at']
+                    attributes: ['id', 'comment', 'post_id', 'user_id', 'created_at'],
+                    include: {
+                        model: User,
+                        attributes: ["username"],
+                    },
                 },
                 {
                     model: User,
@@ -50,7 +54,11 @@ router.get('/post/:id', async (req, res) => {
             include: [
                 {
                     model: Comment,
-                    attributes: ['id', 'comment', 'post_id', 'user_id', 'created_at']
+                    attributes: ['id', 'comment', 'post_id', 'user_id', 'created_at'],
+                    include: {
+                        model: User,
+                        attributes: ["username"],
+                    },
                 },
                 {
                     model: User,
@@ -76,7 +84,11 @@ router.get('/posts-comments', async (req, res) => {
             include: [
                 {
                     model: Comment,
-                    attributes: ['id', 'comment', 'post_id', 'user_id', 'created_at']
+                    attributes: ['id', 'comment', 'post_id', 'user_id', 'created_at'],
+                    include: {
+                        model: User,
+                        attributes: ["username"],
+                    },
                 },
                 {
                     model: User,
