@@ -7,7 +7,6 @@ router.get('/', withAuth, (req, res) => {
     try {
         const postData = Post.findAll({
             where: {
-                // use the ID from the session
                 user_id: req.session.user_id
             },
             include: [
