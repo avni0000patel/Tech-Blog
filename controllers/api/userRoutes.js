@@ -3,9 +3,6 @@ const { User, Post, Comment } = require('../../models');
 
 // Get all users
 router.get('/', async (req, res) => {
-    // /api/users
-    // console.log("Working api/users!");
-
     try {
         const userData = await User.findAll({
             attributes: { exclude: ['password'] },
@@ -134,6 +131,7 @@ router.put('/:id', async (req, res) => {
 
         res.status(200).json(userData);
     } catch (err) {
+        console.log(err);
         res.status(500).json(err);
     }
 });
@@ -154,6 +152,7 @@ router.delete('/:id', async (req, res) => {
 
         res.status(200).json(userData);
     } catch (err) {
+        console.log(err);
         res.status(500).json(err);
     }
 });

@@ -1,19 +1,22 @@
 <div>
     <h2>Edit Post</h2>
 
-    <form class="card-body edit-post-form">
-        <label for="title">Title:</label>
-        <input class="form-input" type="text" name="title" value="{{post.title}}" />
-
-        <label for="content">Content:</label>
-        <input class="form-input" type="text" name="content" value="{{post.content}}" />
-
-        <button type="submit" class="btn btn-primary">Update Post</button>
-        <button type="submit" class="delete-button btn btn-primary">Delete Post</button>
+    <form class="form edit-post-form">
+        <div class="form-group">
+            <label for="title">Title:</label>
+            <input class="form-input" type="text" id="title" name="title" />
+        </div>
+        <div class="form-group">
+            <label for="content">Content:</label>
+            <input class="form-input" type="text" id="content" name="content" />
+        </div>
+        <div class="form-group">
+            <button type="submit" class="edit-post-form btn btn-primary">Update Post</button>
+            <button type="submit" class="delete-button btn btn-primary">Delete Post</button>
+        </div>
     </form>
 
 </div>
-
 
 <script src="/js/edit.js"></script>
 <script src="/js/delete.js"></script>
