@@ -1,5 +1,6 @@
 header,
 .project:not(:last-child) {
+    background-color: black;
     border-bottom: 1px solid #ccc;
 }
 
@@ -22,4 +23,8 @@ header,
     color: #056605;
     font-weight: bold;
     margin-left: -5px;
+}
+
+body {
+    background-color: mintcream;
 }
