@@ -3,5 +3,5 @@ In this project I have created a tech blog. The app follows the MVC paradigm usi
 ## GitHub Link
 https://github.com/avni0000patel
 ## Deployed Application Link
-
+https://boiling-tor-98375.herokuapp.com/
 ## Screenshot
