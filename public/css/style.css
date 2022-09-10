@@ -1,30 +1,22 @@
-header,
-.project:not(:last-child) {
+header {
     background-color: black;
     border-bottom: 1px solid #ccc;
 }
 
-.no-button {
-    background: none;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    color: #1b89bc;
-    text-decoration: none;
-    font-size: 100%;
+.tech-blog {
+    color: black;
+    background-color: white;
 }
 
-.no-button:hover {
-    color: #065b83;
-    text-decoration: underline;
-}
-
-.dollar-amount {
-    color: #056605;
-    font-weight: bold;
-    margin-left: -5px;
+nav {
+    font-size: 28px;
+    padding: 15px;
 }
 
 body {
     background-color: mintcream;
+}
+
+.link {
+    color: lightgray;
 }
