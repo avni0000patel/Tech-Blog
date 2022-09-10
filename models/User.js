@@ -20,15 +20,12 @@ User.init(
             type: DataTypes.STRING,
             allowNull: false,
             unique: true,
-            validate: {
-                len: [8],
-            }
         },
         password: {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
-                len: [8],
+                len: [5],
             }
         },
     },
@@ -44,7 +41,7 @@ User.init(
             },
         },
         sequelize,
-        timestamps: false,
+        // timestamps: false,
         freezeTableName: true,
         underscored: true,
         modelName: 'user',

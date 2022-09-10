@@ -8,7 +8,7 @@ router.get('/', async (req, res) => {
             include: [
                 {
                     model: Comment,
-                    attributes: ['id', 'comment', 'post_id', 'user_id', 'created_at'],
+                    attributes: ['id', 'comment', 'post_id', 'user_id', 'createdAt'],
                     include: {
                         model: User,
                         attributes: ["username"],
@@ -23,6 +23,7 @@ router.get('/', async (req, res) => {
 
         // Serialize data so the template can read it
         const posts = postData.map((post) => post.get({ plain: true }));
+        console.log(posts);
 
         // Pass serialized data and session flag into template
         res.render('homepage', {
@@ -48,29 +49,33 @@ router.get('/signup', (req, res) => {
     res.render('signup');
 });
 
-router.get('/post/:id', async (req, res) => {
+router.get('/posts/:id', async (req, res) => {
     try {
         const postData = await Post.findByPk(req.params.id, {
+            where: {
+                id: req.params.id
+            },
             include: [
                 {
                     model: Comment,
-                    attributes: ['id', 'comment', 'post_id', 'user_id', 'created_at'],
+                    attributes: ['id', 'comment', 'post_id', 'user_id', 'createdAt'],
                     include: {
                         model: User,
-                        attributes: ["username"],
+                        attributes: ['username']
                     },
                 },
                 {
                     model: User,
-                    attributes: ['username'],
+                    attributes: ['username']
                 },
             ],
         });
 
-        const post = postData.get({ plain: true });
+        const posts = postData.get({ plain: true });
+        console.log(posts);
 
         res.render('single-post', {
-            post,
+            posts,
             logged_in: req.session.logged_in
         });
     } catch (err) {
@@ -78,13 +83,16 @@ router.get('/post/:id', async (req, res) => {
     }
 });
 
-router.get('/posts-comments', async (req, res) => {
+router.get('/comments', async (req, res) => {
     try {
         const postData = await Post.findByPk(req.params.id, {
+            where: {
+                id: req.params.id
+            },
             include: [
                 {
                     model: Comment,
-                    attributes: ['id', 'comment', 'post_id', 'user_id', 'created_at'],
+                    attributes: ['id', 'comment', 'post_id', 'user_id', 'createdAt'],
                     include: {
                         model: User,
                         attributes: ["username"],
@@ -97,10 +105,10 @@ router.get('/posts-comments', async (req, res) => {
             ],
         });
 
-        const post = postData.get({ plain: true });
+        const posts = postData.get({ plain: true });
 
-        res.render('posts-comments', {
-            post,
+        res.render('comments', {
+            posts,
             logged_in: req.session.logged_in
         });
     } catch (err) {

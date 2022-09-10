@@ -17,7 +17,7 @@ router.get('/', withAuth, (req, res) => {
                 },
                 {
                     model: Comment,
-                    attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+                    attributes: ['id', 'comment', 'post_id', 'user_id', 'createdAt'],
                     include: {
                         model: User,
                         attributes: ["username"],
@@ -35,6 +35,7 @@ router.get('/', withAuth, (req, res) => {
             logged_in: req.session.logged_in
         });
     } catch (err) {
+        console.log(err);
         res.status(500).json(err);
     }
 });
@@ -53,7 +54,7 @@ router.get('/edit/:id', withAuth, (req, res) => {
                 },
                 {
                     model: Comment,
-                    attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+                    attributes: ['id', 'comment', 'post_id', 'user_id', 'createdAt'],
                     include: {
                         model: User,
                         attributes: ["username"],
@@ -71,6 +72,7 @@ router.get('/edit/:id', withAuth, (req, res) => {
             logged_in: req.session.logged_in
         });
     } catch (err) {
+        console.log(err);
         res.status(500).json(err);
     }
 })

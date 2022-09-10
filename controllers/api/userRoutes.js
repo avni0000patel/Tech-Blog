@@ -2,9 +2,12 @@ const router = require('express').Router();
 const { User, Post, Comment } = require('../../models');
 
 // Get all users
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
+    // /api/users
+    // console.log("Working api/users!");
+
     try {
-        const userData = User.findAll({
+        const userData = await User.findAll({
             attributes: { exclude: ['password'] },
             include: [{ model: Post }, { model: Comment }]
         });
@@ -48,7 +51,10 @@ router.post('/', async (req, res) => {
         });
 
         req.session.save(() => {
-            req.session.loggedIn = true;
+            req.session.logged_in = true;
+            req.session.user_id = userData.id;
+            req.session.username = userData.username;
+
 
             res.status(200).json(userData);
         });
@@ -60,10 +66,20 @@ router.post('/', async (req, res) => {
 
 // Login
 router.post('/login', async (req, res) => {
+    console.log(req.body);
+    const { username, password } = req.body;
+
+    if ((!username, !password)) {
+        return res
+            .status(400)
+            .json({ message: "You did not give me all the info!" });
+    }
+
     try {
         const userData = await User.findOne({
             where: {
-                username: req.body.username,
+                username,
+                password
             },
         });
 
@@ -72,7 +88,7 @@ router.post('/login', async (req, res) => {
             return;
         }
 
-        const validPassword = await userData.checkPassword(req.body.password);
+        const validPassword = userData.checkPassword(password);
 
         if (!validPassword) {
             res.status(400).json({ message: 'Incorrect password!' });
@@ -80,7 +96,9 @@ router.post('/login', async (req, res) => {
         }
 
         req.session.save(() => {
-            req.session.loggedIn = true;
+            req.session.logged_in = true;
+            req.session.user_id = userData.id;
+            req.session.username = userData.username;
 
             res.status(200).json({ user: userData, message: 'You are now logged in!' });
         });
@@ -92,7 +110,7 @@ router.post('/login', async (req, res) => {
 
 // Logout
 router.post('/logout', (req, res) => {
-    if (req.session.loggedIn) {
+    if (req.session.logged_in) {
         req.session.destroy(() => {
             res.status(204).end();
         });
@@ -124,7 +142,7 @@ router.put('/:id', async (req, res) => {
 // Delete
 router.delete('/:id', async (req, res) => {
     try {
-        const userData = await Product.destroy({
+        const userData = await User.destroy({
             where: {
                 id: req.params.id
             }
@@ -142,4 +160,3 @@ router.delete('/:id', async (req, res) => {
 });
 
 module.exports = router;
-

@@ -1,33 +1,14 @@
-<section>
-    <h2>Create New Post</h2>
-
-    <form class="new-post-form">
-        <div>
-            <label for="post-title">Title</label>
-            <input type="text" id="post-title" name="post-title" />
-        </div>
-
-        <div>
-            <label for="post-body">Body</label>
-            <textarea id="post-body" name="post-body"></textarea>
-        </div>
-
-        <button type="submit" class="btn">Create</button>
-    </form>
-</section>
-
 {{#if posts.length}}
-<section>
-    <h2>Your Posts</h2>
-    <ol>
-        {{#each posts as |post|}}
-        <li>
-            {{> post-info post}}
-            <a href="/dashboard/edit/{{post.id}}" class="edit-link">Edit post</a>
-        </li>
-        {{/each}}
-    </ol>
-</section>
+<div>
+    <h2>Current Posts</h2>
+    {{#each posts as |post|}}
+    {{> dashboard-postinfo post}}
+    <a href="/dashboard/edit/{{post.id}}">Edit Post</a>
+    {{/each}}
+
+</div>
 {{/if}}
 
-<script src="/javascript/post.js"></script>
+<button type="submit" class="btn"><a class="link" href="/dashboard/new">+ New Post</a></button>
+
+<script src="../public/js/post.js"></script>

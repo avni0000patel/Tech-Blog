@@ -1,10 +1,11 @@
 const router = require('express').Router();
 const { User, Post, Comment } = require('../../models');
+const withAuth = require('../../utils/auth');
 
-// Get all posts
-router.get('/', (req, res) => {
+// Get all comments
+router.get('/', async (req, res) => {
     try {
-        const commentData = Comment.findAll({
+        const commentData = await Comment.findAll({
             include: [{ model: User }, { model: Post }]
         });
 
@@ -15,7 +16,7 @@ router.get('/', (req, res) => {
     }
 })
 
-// Get one post
+// Get one comment
 router.get('/:id', async (req, res) => {
     try {
         const commentData = await Comment.findByPk(req.params.id, {
@@ -38,7 +39,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // Create new comment
-router.post('/', async (req, res) => {
+router.post('/', withAuth, async (req, res) => {
     try {
         const commentData = await Comment.create({
             comment: req.body.comment,
@@ -46,28 +47,27 @@ router.post('/', async (req, res) => {
             user_id: req.session.user_id
         });
 
-        req.session.save(() => {
-            req.session.loggedIn = true;
-
-            res.status(200).json(commentData);
-        });
+        res.status(200).json(commentData);
     } catch (err) {
         console.log(err);
-        res.status(500).json(err);
+        res.status(400).json(err);
     }
 });
 
 // Update
-router.put('/:id', async (req, res) => {
+router.put('/:id', withAuth, async (req, res) => {
     try {
         const commentData = await Comment.update(req.body, {
-            where: {
-                id: req.params.id,
-            },
-        });
+            comment: req.body.comment
+        },
+            {
+                where: {
+                    id: req.params.id
+                },
+            });
 
         if (!commentData) {
-            res.status(400).json({ message: 'No comment found with this id!' });
+            res.status(404).json({ message: 'No comment found with this id!' });
             return;
         }
 
@@ -78,7 +78,7 @@ router.put('/:id', async (req, res) => {
 });
 
 // Delete
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', withAuth, async (req, res) => {
     try {
         const commentData = await Comment.destroy({
             where: {
