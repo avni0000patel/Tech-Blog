@@ -1,6 +1,5 @@
 const editFormHandler = async (event) => {
     event.preventDefault();
-    console.log("The update button was clicked!")
 
     const title = document.querySelector(`input[name="title"]`).value.trim();
     const content = document.querySelector(`input[name="content"]`).value.trim();
