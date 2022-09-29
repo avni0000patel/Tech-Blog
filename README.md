@@ -27,8 +27,6 @@ Dotenv - reads key value pairs from a .env file and can set them as environment 
 
 Bycrypt - hashes and salts passwords securely
 
-Axios - makes HTTP requests from the browser and handle the transformation of request and response data
-
 Connect-session-sequelize - a SQL session store using sequelize
 
 ## Instructions
