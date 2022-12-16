@@ -36,22 +36,6 @@ Run the following:
 
 `npm i`
 
-`npm install bcrypt`
-
-`npm install connect-session-sequelize`
-
-`npm install dotenv`
-
-`npm install express`
-
-`npm install express-handlebars`
-
-`npm install express-session`
-
-`npm install mysql2`
-
-`npm install sequelize`
-
 `node server.js`
 
 `node seeds/index.js`
