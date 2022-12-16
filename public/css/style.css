@@ -4,8 +4,7 @@ header {
 }
 
 .tech-blog {
-    color: black;
-    background-color: white;
+    color: white;
 }
 
 nav {
@@ -18,5 +17,5 @@ body {
 }
 
 .link {
-    color: lightgray;
+    color: white;
 }
