@@ -32,8 +32,6 @@ Connect-session-sequelize - a SQL session store using sequelize
 ## Instructions
 Run the following:
 
-`npm init`
-
 `npm i`
 
 `node server.js`
