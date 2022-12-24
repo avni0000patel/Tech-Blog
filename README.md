@@ -38,4 +38,6 @@ Run the following:
 
 `node seeds/index.js`
 ## Screenshot
-![localhost_3001_](https://user-images.githubusercontent.com/104175474/189507515-ebb5b8ce-c78f-42ad-9acb-e9355f5a6978.png)
+![localhost_3001_ (1)](https://user-images.githubusercontent.com/104175474/208167687-cff331eb-e322-498e-9e40-7c171bc0fe1f.png)
+
+
