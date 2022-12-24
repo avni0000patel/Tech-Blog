@@ -11,18 +11,18 @@
 
 <body>
     <div class="flex-column justify-space-around">
-        <header class="display-flex justify-space-between align-center p-2">
-            <h1>
-                <a class="tech-blog" href="/">Tech Blog</a>
-            </h1>
+        <header class="display-flex justify-space-between align-center">
+            <h4>
+                <a class="tech-blog ml-3" href="/">Tech Blog</a>
+            </h4>
             <nav>
                 <!-- Conditionally render login or logout links -->
-                <a class="link" href="/">Home</a>
-                <a class="link" href="/dashboard">Dashboard</a>
+                <a class="link ml-3" href="/">Home</a>
+                <a class="link ml-3" href="/dashboard">Dashboard</a>
                 {{#if logged_in}}
-                <a class="link logout" href="/" id="logout">Logout</a>
+                <a class="link logout ml-3" href="/" id="logout">Logout</a>
                 {{else}}
-                <a class="link" href="/login">Login</a>
+                <a class="link ml-3" href="/login">Login</a>
                 {{/if}}
             </nav>
         </header>
